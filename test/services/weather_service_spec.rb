@@ -17,6 +17,7 @@ class WeatherServiceTest < ActiveSupport::TestCase
       'forecastTimestamps' => [
         {
           'forecastTimestampUtc' => '2023-06-09 02:00:00',
+          'feelsLikeTemperature' => 0.1,
           'airTemperature' => 1.1,
           'windSpeed' => 2.2,
           'windGust' => 3.3,
@@ -44,11 +45,14 @@ class WeatherServiceTest < ActiveSupport::TestCase
 
   test 'saves the correct data to the Forecast record' do
     @weather_service.call_forecast
-
     forecast = Forecast.first
     assert_equal places(:kaunas).id, forecast.place_id
-    assert_equal 'forecast_creation_time', forecast.forecast_creation_timestamp
-    assert_equal 'forecast_timestamp', forecast.forecast_timestamp
+    expected_creation_time = Time.zone.parse('2023-06-09 01:57:23')
+    expected_forecast_time = Time.zone.parse('2023-06-09 02:00:00')
+
+    assert_in_delta expected_creation_time, forecast.forecast_creation_timestamp.to_time, 1.minute
+    assert_in_delta expected_forecast_time, forecast.forecast_timestamp.to_time, 1.minute
+
     assert_equal 1.1, forecast.air_temperature
     assert_equal 2.2, forecast.wind_speed
     assert_equal 3.3, forecast.wind_gust
@@ -57,6 +61,6 @@ class WeatherServiceTest < ActiveSupport::TestCase
     assert_equal 6.6, forecast.sea_level_pressure
     assert_equal 7.7, forecast.relative_humidity
     assert_equal 8.8, forecast.total_precipitation
-    assert_equal 'condition_code', forecast.condition_code
+    assert_equal 'clear', forecast.condition_code
   end
 end
