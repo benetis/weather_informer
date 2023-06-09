@@ -5,12 +5,12 @@ class WeatherController < ActionController::Base
 
   # Temporary method to fetch places, will be moved to background job
   def fetch_places
-    WeatherService.new.call_places
+    WeatherService.new.fetch_places
     puts "done"
   end
 
   def fetch_forecast
-    WeatherService.new.call_forecast
+    WeatherService.new.fetch_forecasts
     puts "done"
   end
 end

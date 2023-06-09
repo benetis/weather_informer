@@ -39,12 +39,12 @@ class WeatherServiceTest < ActiveSupport::TestCase
 
   test 'creates a new Forecast record for each forecast item' do
     assert_difference 'Forecast.count', 1 do
-      @weather_service.call_forecast
+      @weather_service.fetch_forecasts
     end
   end
 
   test 'saves the correct data to the Forecast record' do
-    @weather_service.call_forecast
+    @weather_service.fetch_forecasts
     forecast = Forecast.first
     assert_equal places(:kaunas).id, forecast.place_id
     expected_creation_time = Time.zone.parse('2023-06-09 01:57:23')

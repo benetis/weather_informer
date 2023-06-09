@@ -5,7 +5,7 @@ class WeatherService
     @meteo = Meteo.new
   end
 
-  def call_places
+  def fetch_places
     begin
       place = @meteo.get_place('kaunas')
 
@@ -28,7 +28,7 @@ class WeatherService
     end
   end
 
-  def call_forecast
+  def fetch_forecasts
     begin
       forecast = @meteo.get_forecast('kaunas')
 
