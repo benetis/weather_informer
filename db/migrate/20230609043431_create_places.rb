@@ -16,9 +16,9 @@ class CreatePlaces < ActiveRecord::Migration[7.0]
     create_table :places do |t|
       t.string :code
       t.string :name
-      t.string :administrativeDivision
+      t.string :administrative_division
       t.string :country
-      t.string :countryCode
+      t.string :country_code
       t.float :latitude
       t.float :longitude
       t.timestamps
