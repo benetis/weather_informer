@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AlertManagerService
+class NotificationManagerService
   def check_last_forecast
     forecast = Forecast.last
 
