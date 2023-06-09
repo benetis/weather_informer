@@ -16,7 +16,7 @@ class WeatherServiceTest < ActiveSupport::TestCase
       },
       'forecastTimestamps' => [
         {
-          'forecastTimestampUtc' => '2023-06-09 02:00:00',
+          'forecastTimeUtc' => '2023-06-09 02:00:00',
           'feelsLikeTemperature' => 0.1,
           'airTemperature' => 1.1,
           'windSpeed' => 2.2,

@@ -41,7 +41,7 @@ class WeatherService
           Forecast.create(
             place_id: place.id,
             forecast_creation_timestamp: forecast_created_at,
-            forecast_timestamp: forecast_item['forecastTimestampUtc'],
+            forecast_timestamp: forecast_item['forecastTimeUtc'],
             air_temperature: forecast_item['airTemperature'],
             feels_like_temperature: forecast_item['feelsLikeTemperature'],
             wind_speed: forecast_item['windSpeed'],
