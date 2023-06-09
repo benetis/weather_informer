@@ -1,16 +1,3 @@
-# "place": {
-#   "code": "kaunas",
-#   "name": "Kaunas",
-#   "administrativeDivision": "Kauno miesto savivaldybė",
-#   "country": "Lietuva",
-#   "countryCode": "LT",
-#   "coordinates": {
-#     "latitude": 54.898214,
-#     "longitude": 23.904482
-#   }
-# },
-
-
 class CreatePlaces < ActiveRecord::Migration[7.0]
   def change
     create_table :places do |t|
