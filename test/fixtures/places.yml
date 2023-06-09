@@ -1,11 +1,23 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+# test/fixtures/places.yml
+
+kaunas:
+  id: 1
+  code: 'kaunas'
+  name: 'Kaunas'
+  administrative_division: 'Kauno miesto savivaldybė'
+  country: 'Lietuva'
+  country_code: 'LT'
+  latitude: 54.8985
+  longitude: 23.9036
+
+vilnius:
+  id: 2
+  code: 'vilnius'
+  name: 'Vilnius'
+  administrative_division: 'Vilniaus miesto savivaldybė'
+  country: 'Lietuva'
+  country_code: 'LT'
+  latitude: 54.6872
+  longitude: 25.2797

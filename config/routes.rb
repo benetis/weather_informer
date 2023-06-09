@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   post "weather/fetch_places"
+  post "weather/fetch_forecast"
 end
