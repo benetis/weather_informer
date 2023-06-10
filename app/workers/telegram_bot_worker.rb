@@ -1,5 +1,6 @@
 # app/workers/telegram_bot_worker.rb
 
+require 'telegram/bot'
 class TelegramBotWorker
   include Sidekiq::Worker
 
