@@ -1,7 +1,7 @@
-# app/jobs/telegram_bot_job.rb
+# app/workers/telegram_bot_worker.rb
 
-class TelegramBotJob < ApplicationJob
-  queue_as :default
+class TelegramBotWorker
+  include Sidekiq::Worker
 
   def perform(*args)
     token = Rails.application.credentials.dig(:telegram_api_key)

@@ -14,3 +14,11 @@ services:
       - .:/app
     depends_on:
       - redis
+  rails:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+      - sidekiq
