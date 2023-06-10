@@ -36,3 +36,6 @@
 /config/credentials.yml.enc
 
 /config/credentials/development.key
+
+
+data/
