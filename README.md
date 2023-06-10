@@ -1,6 +1,6 @@
 # README
 
-## Project: Work in progress, not ready for use
+## Disclaimer: Work in progress, not ready for use
 
 ## Disclaimer
 I am making this project for the purpose of getting familiar with Ruby and RoR. 
