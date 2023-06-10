@@ -9,7 +9,7 @@ class NotificationManagerService
       triggers.each do |trigger|
         case trigger
         in { rain: _ }
-          NotificationsMailer.with(trigger).rain_predicted.deliver_now
+          NotificationsMailer.with(trigger).rain_predicted(trigger).deliver_now
         else
           puts "Unknown trigger: #{trigger}"
         end
