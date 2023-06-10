@@ -9,7 +9,13 @@ class NotificationManagerService
       triggers.each do |trigger|
         case trigger
         in { rain: _ }
-          NotificationsMailer.with(trigger).rain_predicted(trigger).deliver_now
+          if Rails.configuration.x.send_email
+            NotificationsMailer.with(trigger).rain_predicted(trigger).deliver_now
+          end
+
+          if Rails.configuration.x.send_telegram
+            puts "Sending telegram notification"
+          end
         else
           puts "Unknown trigger: #{trigger}"
         end
