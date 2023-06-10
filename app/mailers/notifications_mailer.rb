@@ -2,7 +2,7 @@ class NotificationsMailer < ApplicationMailer
 
   default from: Rails.application.credentials.dig(:smtp, :from)
 
-  def rain_predicted
+  def rain_predicted(trigger)
     @greeting = "Hi"
 
     mail to: Rails.application.credentials.dig(:emails_to_notify).first
