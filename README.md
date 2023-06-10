@@ -28,4 +28,5 @@ Simple weather forecast informer. Will send an email if weather conditions are m
     user_name: "apikey"
     password: "SG...." #sendgrid api key
     from: "from@to_deliver.local" #sendgrid verified email
+  telegram_api_key: "placeholder_key"
   ```
