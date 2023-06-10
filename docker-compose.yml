@@ -7,3 +7,10 @@ services:
     volumes:
       - ./data:/data
     command: redis-server --appendonly yes
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
