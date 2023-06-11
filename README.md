@@ -19,9 +19,8 @@ Simple weather forecast informer. Will send a notification if weather conditions
 
 ## Running
 - Locally
-  - `docker-compose up -d` for Redis & Sidekiq
+  - `docker-compose up -d` for Rails, Redis & Sidekiq
   - Database is SQLite, so no need to run anything
-  - `rails server`
 
 ## Configuration
 - `EDITOR="code --wait" rails credentials:edit`
