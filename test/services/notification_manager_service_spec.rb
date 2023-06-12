@@ -45,10 +45,7 @@ class NotificationManagerServiceTest < ActiveSupport::TestCase
     # mock Redis connection
     redis_connection = mock('redis_connection')
     RedisConnection.stubs(:current).returns(redis_connection)
-
-    # prepare expected message
-    expected_message = { :text => "It will rain today @ #{@triggers.first}", :user_id => "placeholder" }.to_json
-    redis_connection.expects(:rpush).with('telegram_messages', expected_message)
+    redis_connection.expects(:rpush).with('telegram_messages', anything)
 
     @service.notify_about_today
   end

@@ -25,6 +25,7 @@ class ConditionalMonitoringService
   end
 
   def will_rain?(forecast)
-    forecast.total_precipitation > 0
+    forecast&.total_precipitation&.positive?
   end
+
 end

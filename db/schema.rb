@@ -6,15 +6,15 @@
 # db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
-# migrations use external_api dependencies or application code.
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_06_09_055246) do
   create_table "forecasts", force: :cascade do |t|
     t.integer "place_id", null: false
-    t.datetime "forecast_creation_timestamp"
-    t.datetime "forecast_timestamp"
+    t.datetime "forecast_creation_timestamp", null: false
+    t.datetime "forecast_timestamp", null: false
     t.float "air_temperature"
     t.float "feels_like_temperature"
     t.float "wind_speed"

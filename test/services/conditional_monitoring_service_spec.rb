@@ -4,8 +4,12 @@ class ForecastTest < ActiveSupport::TestCase
 
   def setup
     @kaunas = places(:kaunas)
-    @forecast_with_rain = Forecast.create!(place_id: @kaunas.id, forecast_timestamp: Date.today, total_precipitation: 5)
-    @forecast_without_rain = Forecast.create!(place_id: @kaunas.id, forecast_timestamp: Date.today, total_precipitation: 0)
+    @forecast_with_rain = Forecast.create!(
+      place_id: @kaunas.id, forecast_timestamp: Date.today.plus_with_duration(15.minutes), total_precipitation: 5, forecast_creation_timestamp: Time.now
+    )
+    @forecast_without_rain = Forecast.create!(
+      place_id: @kaunas.id, forecast_timestamp: Date.today.plus_with_duration(16.minutes), total_precipitation: 0, forecast_creation_timestamp: Time.now
+    )
 
     assert @forecast_with_rain.save
     assert @forecast_without_rain.save
@@ -53,13 +57,13 @@ class ForecastTest < ActiveSupport::TestCase
 
     @updated_rain_forecast = Forecast.create!(
       place_id: @kaunas.id,
-      forecast_timestamp: Date.today,
+      forecast_timestamp: Date.today.plus_with_duration(15.minutes),
       total_precipitation: 6,
       forecast_creation_timestamp: Time.now.minus_with_duration(1.hour)
     )
     @updated_again_rain_forecast = Forecast.create!(
       place_id: @kaunas.id,
-      forecast_timestamp: Date.today,
+      forecast_timestamp: Date.today.plus_with_duration(15.minutes),
       total_precipitation: 6,
       forecast_creation_timestamp: Time.now.minus_with_duration(15.minutes)
     )
