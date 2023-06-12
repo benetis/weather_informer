@@ -48,4 +48,29 @@ class ForecastTest < ActiveSupport::TestCase
     assert_not service.send(:will_rain?, @forecast_without_rain)
   end
 
+  def test_deduplicate_forecasts
+    service = ConditionalMonitoringService.new
+
+    @updated_rain_forecast = Forecast.create!(
+      place_id: @kaunas.id,
+      forecast_timestamp: Date.today,
+      total_precipitation: 6,
+      forecast_creation_timestamp: Time.now.minus_with_duration(1.hour)
+    )
+    @updated_again_rain_forecast = Forecast.create!(
+      place_id: @kaunas.id,
+      forecast_timestamp: Date.today,
+      total_precipitation: 6,
+      forecast_creation_timestamp: Time.now.minus_with_duration(15.minutes)
+    )
+
+    assert @updated_rain_forecast.save
+    assert @updated_again_rain_forecast.save
+
+    triggers = service.check_forecasts_today
+
+    assert_kind_of Array, triggers
+    assert_equal 1, triggers.count
+  end
+
 end
