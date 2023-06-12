@@ -1,5 +1,5 @@
 my_worker:
-  # Run every 24 hours at 6:00 AM
-  cron: "0 6 * * *"
+  # Run every 1 minutes, TODO: change to 1 day
+  cron: "*/1 * * * *"
   class: SendNotificationsWorker
   queue: default

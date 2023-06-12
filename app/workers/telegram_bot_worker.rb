@@ -24,7 +24,7 @@ class TelegramBotWorker
           message_info = RedisConnection.current.lpop('telegram_messages')
           if message_info
             message_info = JSON.parse(message_info, symbolize_names: true)
-            bot.api.send_message(chat_id: "", text: message_info[:text]) # TODO: replace with message_info[:user_id]
+            bot.api.send_message(chat_id: message_info[:chat_id], text: message_info[:text])
           else
             sleep 5
           end
