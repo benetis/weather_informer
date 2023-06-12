@@ -217,6 +217,8 @@ GEM
     reline (0.3.5)
       io-console (~> 0.5)
     rexml (3.2.5)
+    robocop (0.1.1)
+      rack
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     rufus-scheduler (3.9.1)
@@ -296,6 +298,7 @@ DEPENDENCIES
   rails (~> 7.0.4, >= 7.0.4.3)
   redis
   redis-namespace
+  robocop
   selenium-webdriver
   sidekiq
   sidekiq-scheduler
