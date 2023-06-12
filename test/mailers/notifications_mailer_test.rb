@@ -2,11 +2,11 @@ require "test_helper"
 
 class NotificationsMailerTest < ActionMailer::TestCase
   test "rain_predicted" do
-    mail = NotificationsMailer.rain_predicted
+    trigger = { :rain => "2021-08-01 00:00:00" }
+    mail = NotificationsMailer.rain_predicted(trigger)
     assert_equal "Rain predicted", mail.subject
-    assert_equal ["to@example.org"], mail.to
-    assert_equal ["from@example.com"], mail.from
-    assert_match "Hi", mail.body.encoded
+    assert_equal [Rails.application.credentials.dig(:emails_to_notify).first], mail.to
+    assert_equal [Rails.application.credentials.dig(:smtp, :from)], mail.from
   end
 
 end

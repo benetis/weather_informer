@@ -6,6 +6,4 @@ Rails.application.routes.draw do
 
   post "weather/fetch_places"
   post "weather/fetch_forecast"
-
-  post "notifications/notify_about_today" => "notification_manager#notify_about_today"
 end
