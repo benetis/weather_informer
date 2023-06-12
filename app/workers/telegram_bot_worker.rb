@@ -14,16 +14,16 @@ class TelegramBotWorker
           case message
           when Telegram::Bot::Types::Message
             case message.text
-            when 'place'
+            when /kaunas/i
               bot.api.send_message(chat_id: message.chat.id, text: "<Placeholder command>, #{message.chat.id}")
-            when 'weather'
-              bot.api.send_message(chat_id: message.chat.id, text: "It's sunny today")
-            when 'go'
+            when /orai/i
+              bot.api.send_message(chat_id: message.chat.id, text: "Nėra lietaus")
+            when '.'
               kb = [[
-                      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'When is the next rain?', callback_data: 'touch'),
+                      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Kada lis?', callback_data: 'touch'),
                     ]]
               markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
-              bot.api.send_message(chat_id: message.chat.id, text: 'Make a choice', reply_markup: markup)
+              bot.api.send_message(chat_id: message.chat.id, text: 'Pasirink', reply_markup: markup)
             end
 
           when Telegram::Bot::Types::CallbackQuery
