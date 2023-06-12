@@ -16,7 +16,7 @@ class NotificationManagerService
           if Rails.configuration.x.send_telegram
             enqueue_telegram_message({
                                        :text => "It will rain today @ #{trigger}",
-                                       :user_id => Rails.application.credentials.dig(:telegram_chats_to_notify)
+                                       :chat_id => Rails.application.credentials.dig(:telegram_chats_to_notify).first
                                      }.to_json)
             puts "Sending telegram notification"
           end
