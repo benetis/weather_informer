@@ -3,7 +3,7 @@ require 'webmock/minitest'
 
 class WeatherServiceTest < ActiveSupport::TestCase
   def setup
-    @weather_service = WeatherService.new
+    @weather_service = ForecastDownloadService.new
     @forecast_data = {
       'forecastCreationTimeUtc' => '2023-06-09 01:57:23',
       'place' => {

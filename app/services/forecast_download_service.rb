@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class WeatherService
+class ForecastDownloadService
   def initialize
     @meteo = Meteo.new
   end
@@ -15,7 +15,7 @@ class WeatherService
       end
 
     rescue StandardError => e
-      Rails.logger.error "WeatherService error: #{e.message}"
+      Rails.logger.error "ForecastDownloadService error: #{e.message}"
       nil
     end
   end
@@ -28,11 +28,11 @@ class WeatherService
         response = JSON.parse(forecast.body)
         create_forecast(response)
       else
-        Rails.logger.error "WeatherService error: #{forecast['error']['message']}"
+        Rails.logger.error "ForecastDownloadService error: #{forecast['error']['message']}"
       end
 
     rescue StandardError => e
-      Rails.logger.error "WeatherService error: #{e.message}"
+      Rails.logger.error "ForecastDownloadService error: #{e.message}"
       nil
     end
   end
