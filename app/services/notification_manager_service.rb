@@ -3,7 +3,7 @@
 class NotificationManagerService
 
   def notify_about_today
-    triggers = ConditionalMonitoringService.new.check_forecasts_today
+    triggers = ConditionalMonitoringService.new.check_forecasts(Time.now..Time.now.end_of_day, [:rain])
 
     if need_to_notify?(triggers)
       triggers.each do |trigger|

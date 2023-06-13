@@ -45,7 +45,7 @@ class WeatherServiceTest < ActiveSupport::TestCase
 
   test 'saves the correct data to the Forecast record' do
     @weather_service.fetch_forecasts
-    forecast = Forecast.first
+    forecast = Forecast.last
     assert_equal places(:kaunas).id, forecast.place_id
     expected_creation_time = Time.zone.parse('2023-06-09 01:57:23')
     expected_forecast_time = Time.zone.parse('2023-06-09 02:00:00')
