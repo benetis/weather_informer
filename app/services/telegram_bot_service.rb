@@ -17,11 +17,17 @@ class TelegramBotService
 
       bot.api.send_message(chat_id: message.from.id, text: reply)
     end
+    if message.data == 'refresh_data'
+      bot.api.send_message(chat_id: message.from.id, text: 'Atnaujinu duomenis...')
+      ForecastDownloadWorker.perform_sync
+      bot.api.send_message(chat_id: message.from.id, text: 'Duomenys atnaujinti')
+    end
   end
 
   def dot_selected(bot, message)
     kb = [[
             Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Kada lis?', callback_data: 'when_will_it_rain'),
+            Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Atnaujink duomenis', callback_data: 'refresh_data')
           ]]
     markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
     bot.api.send_message(chat_id: message.chat.id, text: 'Pasirink', reply_markup: markup)
