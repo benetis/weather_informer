@@ -70,11 +70,11 @@ scorching:
   forecast_creation_timestamp: <%= Time.current %>
   forecast_timestamp: <%= Time.current.advance(days: 3) %>
   air_temperature: 40.0
-  feels_like_temperature: 40.0
+  feels_like_temperature: 31.0
   wind_speed: 5.0
   wind_gust: 7.0
   wind_direction: 270.0
-  cloud_cover: 10.0
+  cloud_cover: 0.0
   sea_level_pressure: 1015.0
   relative_humidity: 40.0
   total_precipitation: 0.0

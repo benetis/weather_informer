@@ -28,7 +28,11 @@ class TelegramBotService
   end
 
   def weather_today_selected(bot, message)
-    bot.api.send_message(chat_id: message.chat.id, text: "Nėra lietaus")
+    triggers = @monitoring.check_forecasts(Time.now..Date.today.end_of_day, [:rain, :hot, :scorching, :windy])
+
+    reply = @telegram_printer.print_triggers(triggers)
+
+    bot.api.send_message(chat_id: message.chat.id, text: reply)
   end
 
   def kaunas_selected(bot, message)

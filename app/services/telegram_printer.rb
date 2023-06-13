@@ -17,4 +17,22 @@ class TelegramPrinter
 
     "Lietus prognozuojamas #{forecast[:rain].strftime('%Y-%m-%d %H:%M')}"
   end
+
+  def print_triggers(triggers)
+    if triggers.empty?
+      return "Jokių įspėjimų šiandien"
+    end
+
+    triggers.map do |trigger|
+      if trigger[:rain]
+        next_rains(trigger)
+      elsif trigger[:hot]
+        "Karšta #{trigger[:hot].strftime('%H:%M')}"
+      elsif trigger[:scorching]
+        "Ugnikalnio vidus ♨️♨️♨️ #{trigger[:scorching].strftime('%H:%M')}"
+      elsif trigger[:windy]
+        "Vėjuota #{trigger[:windy].strftime('%H:%M')}"
+      end
+    end.join("\n")
+  end
 end
