@@ -31,3 +31,99 @@ vilnius_sunny:
   relative_humidity: 40.0
   total_precipitation: 0.0
   condition_code: 'sunny'
+
+hot:
+  id: 3
+  place_id: 1
+  forecast_creation_timestamp: <%= Time.current %>
+  forecast_timestamp: <%= Time.current.advance(days: 2) %>
+  air_temperature: 30.0
+  feels_like_temperature: 27.0
+  wind_speed: 5.0
+  wind_gust: 7.0
+  wind_direction: 270.0
+  cloud_cover: 10.0
+  sea_level_pressure: 1015.0
+  relative_humidity: 40.0
+  total_precipitation: 0.0
+  condition_code: 'sunny'
+
+not_hot:
+  id: 4
+  place_id: 1
+  forecast_creation_timestamp: <%= Time.current %>
+  forecast_timestamp: <%= Time.current.advance(days: 2) %>
+  air_temperature: 15.0
+  feels_like_temperature: 15.0
+  wind_speed: 5.0
+  wind_gust: 7.0
+  wind_direction: 270.0
+  cloud_cover: 10.0
+  sea_level_pressure: 1015.0
+  relative_humidity: 40.0
+  total_precipitation: 0.0
+  condition_code: 'sunny'
+
+scorching:
+  id: 5
+  place_id: 1
+  forecast_creation_timestamp: <%= Time.current %>
+  forecast_timestamp: <%= Time.current.advance(days: 3) %>
+  air_temperature: 40.0
+  feels_like_temperature: 40.0
+  wind_speed: 5.0
+  wind_gust: 7.0
+  wind_direction: 270.0
+  cloud_cover: 10.0
+  sea_level_pressure: 1015.0
+  relative_humidity: 40.0
+  total_precipitation: 0.0
+  condition_code: 'sunny'
+
+not_scorching:
+  id: 6
+  place_id: 1
+  forecast_creation_timestamp: <%= Time.current %>
+  forecast_timestamp: <%= Time.current.advance(days: 3) %>
+  air_temperature: 25.0
+  feels_like_temperature: 25.0
+  wind_speed: 5.0
+  wind_gust: 7.0
+  wind_direction: 270.0
+  cloud_cover: 10.0
+  sea_level_pressure: 1015.0
+  relative_humidity: 40.0
+  total_precipitation: 0.0
+  condition_code: 'sunny'
+
+windy:
+  id: 7
+  place_id: 1
+  forecast_creation_timestamp: <%= Time.current %>
+  forecast_timestamp: <%= Time.current.advance(days: 4) %>
+  air_temperature: 20.0
+  feels_like_temperature: 20.0
+  wind_speed: 15.0
+  wind_gust: 15.0
+  wind_direction: 270.0
+  cloud_cover: 10.0
+  sea_level_pressure: 1015.0
+  relative_humidity: 40.0
+  total_precipitation: 0.0
+  condition_code: 'sunny'
+
+not_windy:
+  id: 8
+  place_id: 1
+  forecast_creation_timestamp: <%= Time.current %>
+  forecast_timestamp: <%= Time.current.advance(days: 4) %>
+  air_temperature: 20.0
+  feels_like_temperature: 20.0
+  wind_speed: 5.0
+  wind_gust: 7.0
+  wind_direction: 270.0
+  cloud_cover: 10.0
+  sea_level_pressure: 1015.0
+  relative_humidity: 40.0
+  total_precipitation: 0.0
+  condition_code: 'sunny'
