@@ -79,5 +79,6 @@ group :test do
   gem "webdrivers"
   gem "webmock"
   gem "mocha"
+  gem "timecop"
 end
 
