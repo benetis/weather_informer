@@ -5,9 +5,12 @@ require 'telegram/bot'
 class TelegramBotWorker
   include Sidekiq::Worker
 
+  def initialize
+    @bot_service = TelegramBotService.new
+  end
+
   def perform(*args)
     token = Rails.application.credentials.dig(:telegram_api_key)
-    bot_service = TelegramBotService.new
 
     Telegram::Bot::Client.run(token) do |bot|
       Thread.new do
@@ -16,15 +19,15 @@ class TelegramBotWorker
           when Telegram::Bot::Types::Message
             case message.text
             when /kaunas/i
-              bot_service.kaunas_selected(bot, message)
+              @bot_service.kaunas_selected(bot, message)
             when /orai/i
-              bot_service.weather_today_selected(bot, message)
+              @bot_service.weather_today_selected(bot, message)
             when '.'
-              bot_service.dot_selected(bot, message)
+              @bot_service.dot_selected(bot, message)
             end
 
           when Telegram::Bot::Types::CallbackQuery
-            bot_service.touch_callback(bot, message)
+            @bot_service.button_callback(bot, message)
           end
         end
 

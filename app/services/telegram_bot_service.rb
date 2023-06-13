@@ -1,15 +1,27 @@
 # frozen_string_literal: true
 
 class TelegramBotService
-  def touch_callback(bot, message)
-    if message.data == 'touch'
-      bot.api.send_message(chat_id: message.from.id, text: "<Placeholder>")
+
+  def initialize
+    @monitoring = ConditionalMonitoringService.new
+    @telegram_printer = TelegramPrinter.new
+  end
+
+  def button_callback(bot, message)
+    if message.data == 'when_will_it_rain'
+      next_trigger = @monitoring.check_forecasts(Time.now.., [:rain])
+                                .sort_by { |trigger| trigger[:rain] }
+                                .first
+
+      reply = @telegram_printer.next_rains(next_trigger)
+
+      bot.api.send_message(chat_id: message.from.id, text: reply)
     end
   end
 
   def dot_selected(bot, message)
     kb = [[
-            Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Kada lis?', callback_data: 'touch'),
+            Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Kada lis?', callback_data: 'when_will_it_rain'),
           ]]
     markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
     bot.api.send_message(chat_id: message.chat.id, text: 'Pasirink', reply_markup: markup)
