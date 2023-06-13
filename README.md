@@ -19,7 +19,10 @@ Simple weather forecast informer. Will send a notification if weather conditions
         - Email
         - Telegram bot
 - Telegram API to ask about current conditions or forecast
-    - `.` Will return a list of options to choose from. For ex: `Kada lis?`, which returns nearest rain forecast
+    - `.` Will return a list of options to choose from.
+        - `Kada lis?`, which returns nearest rain forecast
+        - `Atnaujink duomenis`, which will update data
+    - `orai` Will return warnings about today's weather
 
 ## Running
 
