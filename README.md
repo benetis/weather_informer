@@ -37,4 +37,5 @@ Simple weather forecast informer. Will send a notification if weather conditions
     password: "SG...." #sendgrid api key
     from: "from@to_deliver.local" #sendgrid verified email
   telegram_api_key: "placeholder_key"
+  telegram_chats_to_notify: ["chat_id"]
   ```
