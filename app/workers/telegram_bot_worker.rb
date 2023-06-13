@@ -15,23 +15,15 @@ class TelegramBotWorker
           when Telegram::Bot::Types::Message
             case message.text
             when /kaunas/i
-              bot.api.send_message(chat_id: message.chat.id, text: "<Placeholder command>, #{message.chat.id}")
+              kaunas_selected(bot, message)
             when /orai/i
-              bot.api.send_message(chat_id: message.chat.id, text: "Nėra lietaus")
+              weather_today_selected(bot, message)
             when '.'
-              kb = [[
-                      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Kada lis?', callback_data: 'touch'),
-                    ]]
-              markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
-              bot.api.send_message(chat_id: message.chat.id, text: 'Pasirink', reply_markup: markup)
+              dot_selected(bot, message)
             end
 
           when Telegram::Bot::Types::CallbackQuery
-            # Here you can handle your callbacks from inline buttons
-            if message.data == 'touch'
-              bot.api.send_message(chat_id: message.from.id, text: "<Placeholder>")
-            end
-
+            touch_callback(bot, message)
           end
         end
 
@@ -39,9 +31,7 @@ class TelegramBotWorker
           loop do
             message_info = RedisConnection.current.lpop('telegram_messages')
             if message_info
-              message_info = JSON.parse(message_info, symbolize_names: true)
-              logger.info "Sending telegram message: #{message_info}"
-              bot.api.send_message(chat_id: message_info[:chat_id], text: message_info[:text])
+              send_notification(bot, message_info)
             else
               sleep 5
             end
@@ -49,5 +39,35 @@ class TelegramBotWorker
         end
       end
     end
+  end
+
+  private
+
+  def send_notification(bot, message_info)
+    message_info = JSON.parse(message_info, symbolize_names: true)
+    logger.info "Sending telegram message: #{message_info}"
+    bot.api.send_message(chat_id: message_info[:chat_id], text: message_info[:text])
+  end
+
+  def touch_callback(bot, message)
+    if message.data == 'touch'
+      bot.api.send_message(chat_id: message.from.id, text: "<Placeholder>")
+    end
+  end
+
+  def dot_selected(bot, message)
+    kb = [[
+            Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Kada lis?', callback_data: 'touch'),
+          ]]
+    markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
+    bot.api.send_message(chat_id: message.chat.id, text: 'Pasirink', reply_markup: markup)
+  end
+
+  def weather_today_selected(bot, message)
+    bot.api.send_message(chat_id: message.chat.id, text: "Nėra lietaus")
+  end
+
+  def kaunas_selected(bot, message)
+    bot.api.send_message(chat_id: message.chat.id, text: "<Placeholder command>, #{message.chat.id}")
   end
 end
