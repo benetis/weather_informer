@@ -11,10 +11,18 @@ class TelegramBotWorker
 
   def perform(*args)
     token = Rails.application.credentials.dig(:telegram_api_key)
+    allowed_chat_ids = Rails.application.credentials.dig(:telegram_allowed_chat_ids)
 
     Telegram::Bot::Client.run(token) do |bot|
       Thread.new do
         bot.listen do |message|
+          if message.chat.id.in?(allowed_chat_ids)
+            logger.info "Received message: #{message}"
+          else
+            logger.info "Received message from not allowed chat: #{message}"
+            next
+          end
+
           case message
           when Telegram::Bot::Types::Message
             case message.text

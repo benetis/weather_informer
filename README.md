@@ -41,4 +41,5 @@ Simple weather forecast informer. Will send a notification if weather conditions
     from: "from@to_deliver.local" #sendgrid verified email
   telegram_api_key: "placeholder_key"
   telegram_chats_to_notify: ["chat_id"]
+  telegram_allowed_chat_ids: ["chat_id"]
   ```
