@@ -7,10 +7,6 @@ class ConditionalMonitoringService
     find_triggers(forecasts, conditions)
   end
 
-  def will_rain?(forecast)
-    forecast&.total_precipitation&.positive?
-  end
-
   def find_triggers(forecasts, conditions)
     conditions.flat_map do |condition|
       forecasts.reduce([]) do |triggers, forecast|
@@ -23,6 +19,10 @@ class ConditionalMonitoringService
         triggers
       end
     end
+  end
+
+  def will_rain?(forecast)
+    forecast&.total_precipitation&.positive?
   end
 
 end
