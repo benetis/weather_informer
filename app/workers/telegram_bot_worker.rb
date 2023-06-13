@@ -16,10 +16,10 @@ class TelegramBotWorker
     Telegram::Bot::Client.run(token) do |bot|
       Thread.new do
         bot.listen do |message|
-          if message.chat.id.in?(allowed_chat_ids)
+          if message.from.id.to_s.in?(allowed_chat_ids)
             logger.info "Received message: #{message}"
           else
-            logger.info "Received message from not allowed chat: #{message}"
+            logger.info "Received message from not allowed chat: #{message}, #{message.from.id}"
             next
           end
 
