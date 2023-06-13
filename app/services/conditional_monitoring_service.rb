@@ -20,13 +20,13 @@ class ConditionalMonitoringService
       forecasts.reduce([]) do |triggers, forecast|
         case condition
         when :rain
-          triggers << { :rain => forecast.forecast_timestamp } if will_rain?(forecast)
+          triggers << { :rain => forecast } if will_rain?(forecast)
         when :hot
-          triggers << { :hot => forecast.forecast_timestamp } if is_hot?(forecast)
+          triggers << { :hot => forecast } if is_hot?(forecast)
         when :scorching
-          triggers << { :scorching => forecast.forecast_timestamp } if is_scorching?(forecast)
+          triggers << { :scorching => forecast } if is_scorching?(forecast)
         when :windy
-          triggers << { :windy => forecast.forecast_timestamp } if forecast&.wind_gust >= 10
+          triggers << { :windy => forecast } if forecast&.wind_gust >= 10
         else
           puts "Unknown condition: #{condition}"
         end
