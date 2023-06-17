@@ -22,6 +22,7 @@ Simple weather forecast informer. Will send a notification if weather conditions
     - `.` Will return a list of options to choose from.
         - `Kada lis?`, which returns nearest rain forecast
         - `Atnaujink duomenis`, which will update data
+          ![bot_example.png](docs%2Fbot_example.png)
     - `orai` Will return warnings about today's weather
 
 ## Running

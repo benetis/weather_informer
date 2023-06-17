@@ -16,9 +16,14 @@ services:
       - redis
   rails:
     build: .
-    command: bash -c "RAILS_ENV=production bundle exec rake assets:precompile && bundle exec rake db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bash -c "export SECRET_KEY_BASE=$(bundle exec rake secret) && RAILS_ENV=production bundle exec rake assets:precompile && RAILS_ENV=production bundle exec rails s -p 3000 -b '0.0.0.0'"
     ports:
       - "3000:3000"
+    volumes:
+      - .:/app
+      - db-data:/app/db
     depends_on:
       - redis
       - sidekiq
+volumes:
+  db-data:
