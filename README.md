@@ -25,6 +25,10 @@ Simple weather forecast informer. Will send a notification if weather conditions
           ![bot_example.png](docs%2Fbot_example.png)
     - `orai` Will return warnings about today's weather
 
+## Changelog
+
+#### 1.1 version
+
 ## Overview
 
 ![overview.png](docs%2Foverview_weather_informer.png)
