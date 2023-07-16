@@ -29,6 +29,8 @@ Simple weather forecast informer. Will send a notification if weather conditions
 
 #### 1.1 version
 
+Default timezone for TelegramBot is set to Vilnius. Telegram bot will responses in that timezone
+
 ## Overview
 
 ![overview.png](docs%2Foverview_weather_informer.png)
