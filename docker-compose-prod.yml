@@ -7,9 +7,11 @@ services:
     volumes:
       - ./data:/data
     command: redis-server --appendonly yes
+    restart: on-failure
   sidekiq:
     build: .
     command: bundle exec sidekiq
+    restart: on-failure
     volumes:
       - .:/app
     depends_on:
@@ -19,6 +21,7 @@ services:
     command: bash -c "export SECRET_KEY_BASE=$(bundle exec rake secret) && RAILS_ENV=production bundle exec rake assets:precompile && RAILS_ENV=production bundle exec rails s -p 3000"
     ports:
       - "3000:3000"
+    restart: on-failure
     volumes:
       - .:/app
       - db-data:/app/db

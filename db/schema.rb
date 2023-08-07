@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_09_055246) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_16_095214) do
   create_table "forecasts", force: :cascade do |t|
     t.integer "place_id", null: false
     t.datetime "forecast_creation_timestamp", null: false
@@ -42,5 +42,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_055246) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.integer "place_id", null: false
+    t.string "telegram_chat_id"
+    t.string "place"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_users_on_place_id"
+    t.index ["telegram_chat_id"], name: "index_users_on_telegram_chat_id", unique: true
+  end
+
   add_foreign_key "forecasts", "places"
+  add_foreign_key "users", "places"
 end
