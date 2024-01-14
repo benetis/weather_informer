@@ -33,7 +33,9 @@ Default timezone for TelegramBot is set to Vilnius. Telegram bot will respond in
 
 ## Overview
 
-![overview.png](docs%2Foverview_weather_informer.png)
+### Version 1
+
+![overview.png](docs/overview_weather_informer_v1.png)
 
 [Accompanying blog post](https://benetis.me/posts/ruby/weather-informer/)
 
