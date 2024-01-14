@@ -1,6 +1,7 @@
 # README
+## Newer version at: https://github.com/benetis/weather-informer-events
 
-## Disclaimer: Work in progress, not ready for use
+## Disclaimer: Not for production use
 
 ## Disclaimer
 
